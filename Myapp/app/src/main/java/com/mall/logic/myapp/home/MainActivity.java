@@ -2,6 +2,7 @@ package com.mall.logic.myapp.home;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.mall.logic.myapp.R;
+import com.mall.logic.myapp.login.VerifyMobileNoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -107,4 +109,12 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentTransaction.commit();
     }
+
+    public void selectMall(View view) {
+        Log.i("Home","Select mall Clicked");
+        Intent myIntent = new Intent(this, MallSelectionActivity.class);
+        this.startActivity(myIntent);
+
+    }
+
 }
