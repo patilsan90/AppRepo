@@ -24,47 +24,17 @@
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/otp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/otp1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="number"
-            android:minHeight="16dp"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <EditText
-            android:id="@+id/otp2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="number"
-            android:minHeight="16dp"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <EditText
-            android:id="@+id/otp3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="number"
-            android:minHeight="16dp"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-        <EditText
-            android:id="@+id/otp4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="number"
-            android:minHeight="16dp"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:hint="OTP"
+        android:inputType="number"
+        android:minHeight="16dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:layout_width="match_parent"
@@ -90,6 +60,7 @@
             android:layout_weight=".5"
             android:text="RESEND OTP"
             android:textStyle="bold" />
+
         <Button
             android:id="@+id/call_otp_button"
             style="?android:textAppearanceSmall"
@@ -111,8 +82,8 @@
         android:layout_margin="10dp"
         android:layout_marginTop="16dp"
         android:layout_weight=".5"
-        android:text="SUBMIT"
         android:onClick="submitOTP"
+        android:text="SUBMIT"
         android:textStyle="bold" />
 
 </LinearLayout>
