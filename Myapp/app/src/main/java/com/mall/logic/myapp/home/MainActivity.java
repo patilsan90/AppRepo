@@ -1,4 +1,4 @@
-package com.mall.logic.myapp;
+package com.mall.logic.myapp.home;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -11,9 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.mall.logic.myapp.fragments.MyCart;
-import com.mall.logic.myapp.fragments.Offers;
-import com.mall.logic.myapp.fragments.ScanProduct;
+import com.mall.logic.myapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

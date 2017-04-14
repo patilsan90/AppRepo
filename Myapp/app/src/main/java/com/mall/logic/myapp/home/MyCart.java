@@ -1,4 +1,4 @@
-package com.mall.logic.myapp.fragments;
+package com.mall.logic.myapp.home;
 
 import android.os.Bundle;
 import android.app.Fragment;
