@@ -13,11 +13,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.mall.logic.myapp.R;
-import com.mall.logic.myapp.login.VerifyMobileNoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    public MyCart myCart;
+    public MyCartView myCartView;
     public ScanProduct scanProduct;
     public Offers offers;
     private boolean isBack = false;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         showCartButton = (Button) findViewById(R.id.showCart);
         scanProduct = new ScanProduct();
-        myCart = new MyCart();
+        myCartView = new MyCartView();
         offers = new Offers();
 
         fragmentTransaction.add(R.id.home_fragment, offers);
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (isBack == false) {
             showCartButton.setText("Back");
-            fragmentTransaction.replace(R.id.home_fragment, myCart);
+            fragmentTransaction.replace(R.id.home_fragment, myCartView);
             isBack = true;
         } else {
             showCartButton.setText("My Cart");

@@ -12,7 +12,7 @@ import com.mall.logic.myapp.R;
 public class LoginActivity extends AppCompatActivity {
 
 
-    boolean isRegistrationForm =false;
+    boolean isRegistrationForm = false;
     LoginFragment loginFragment;
     RegisterUserFragment registerUserFragment;
 
@@ -21,20 +21,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        AppState.loginActivity = this;
+        AppState.getInstance().loginActivity = this;
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        loginFragment= new LoginFragment();
+        loginFragment = new LoginFragment();
         fragmentTransaction.add(R.id.login_fragment_place, loginFragment);
         fragmentTransaction.commit();
     }
 
     @Override
     public void onBackPressed() {
-        if(AppState.getInstance().loginState == AppState.LOGIN_STATE.LOGIN_VIEW)
+        if (AppState.getInstance().loginState == AppState.LOGIN_STATE.LOGIN_VIEW)
             super.onBackPressed();
-        else
-        {
+        else {
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.login_fragment_place, loginFragment);

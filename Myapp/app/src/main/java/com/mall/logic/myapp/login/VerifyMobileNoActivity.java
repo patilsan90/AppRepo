@@ -27,7 +27,7 @@ public void submitOTP(View view)
     myIntent.putExtra("isVerifySuccess", "YES"); //Optional parameters
     this.startActivity(myIntent);
     this.finish();
-    AppState.loginActivity.finish();
+    AppState.getInstance().loginActivity.finish();
 }
 
 }
