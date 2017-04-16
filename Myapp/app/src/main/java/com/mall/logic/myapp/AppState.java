@@ -1,8 +1,10 @@
 package com.mall.logic.myapp;
 
 import com.mall.logic.myapp.home.mycart.CartItem;
+import com.mall.logic.myapp.home.offers.OfferItem;
 import com.mall.logic.myapp.login.LoginActivity;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -18,12 +20,20 @@ public static enum LOGIN_STATE {LOGIN_VIEW, REGISTRATION_VIEW};
     public LoginActivity loginActivity;
 
     private ArrayList<CartItem> cartItemsList;
+    private ArrayList<OfferItem> offersList;
+
+    public static boolean isMallSelected = false;
 
     private static AppState state;
+
+    public static String sessionFile;
+    public static String AppCacheFolder;
+
 
     private AppState()
     {
         cartItemsList = new ArrayList<CartItem>();
+        offersList = new ArrayList<OfferItem>();
     }
 
     public static AppState getInstance()
@@ -33,6 +43,7 @@ public static enum LOGIN_STATE {LOGIN_VIEW, REGISTRATION_VIEW};
 
         return state;
     }
+
     public void addCartItem(CartItem cartItem)
     {
         cartItemsList.add(cartItem);
@@ -42,5 +53,16 @@ public static enum LOGIN_STATE {LOGIN_VIEW, REGISTRATION_VIEW};
     {
         return cartItemsList;
     }
+
+    public void addOfferItem(OfferItem cartItem)
+    {
+        offersList.add(cartItem);
+    }
+    public ArrayList<OfferItem> getOfferItemList()
+    {
+        return offersList;
+    }
+
+
 
 }

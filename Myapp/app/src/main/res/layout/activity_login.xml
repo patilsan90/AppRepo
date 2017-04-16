@@ -48,6 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:text="@string/signin_using_gmail"
+                    android:onClick="signinByGmail"
                     android:textStyle="bold" />
 
                 <Button
@@ -57,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:text="@string/signin_using_fb"
+                    android:onClick="signinByFB"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

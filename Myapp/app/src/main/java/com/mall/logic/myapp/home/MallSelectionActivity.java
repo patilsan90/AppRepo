@@ -2,8 +2,10 @@ package com.mall.logic.myapp.home;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
+import com.mall.logic.myapp.AppState;
 import com.mall.logic.myapp.R;
 
 public class MallSelectionActivity extends AppCompatActivity {
@@ -16,4 +18,15 @@ public class MallSelectionActivity extends AppCompatActivity {
         int camWidth = camLayout.getWidth();
         camLayout.setLayoutParams(new LinearLayout.LayoutParams(camWidth, camWidth));
     }
+
+void selectMall(View view)
+{
+//if(authentication true)
+    {
+        AppState.isMallSelected = true;
+        this.finish();
+    }
+}
+
+
 }

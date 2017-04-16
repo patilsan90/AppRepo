@@ -1,4 +1,4 @@
-package com.mall.logic.myapp.home;
+package com.mall.logic.myapp.home.mycart;
 
 
 import android.os.Bundle;
@@ -19,11 +19,11 @@ import com.mall.logic.myapp.support_packages.SwipeDetector;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyCartView extends Fragment implements AdapterView.OnItemClickListener {
+public class MyCartFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private SwipeDetector swipeDetector;
 
-    public MyCartView() {
+    public MyCartFragment() {
         // Required empty public constructor
     }
 
@@ -40,8 +40,8 @@ public class MyCartView extends Fragment implements AdapterView.OnItemClickListe
        // swipeDetector = new SwipeDetector();
        // listView.setOnTouchListener(swipeDetector);
        // listView.setOnItemClickListener(this);
-
-        listView.setAdapter(MyCartAdapter.getInstance(this.getActivity()));
+        Log.i("Generic info "," Activity onCreate MyCartFragment ....");
+        listView.setAdapter(new MyCartAdapter(this.getActivity()));
 
         return view;
     }

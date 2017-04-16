@@ -14,6 +14,16 @@
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Select Mall (Temporary button)"
+        android:gravity="center"
+        android:onClick="selectMall"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
     <LinearLayout
         android:id="@+id/scan_qr_camera"
         android:layout_width="match_parent"

@@ -17,12 +17,11 @@ import com.mall.logic.myapp.R;
 
 public class MyCartAdapter extends BaseAdapter implements View.OnClickListener {
 
-    private static MyCartAdapter adapter;
     //  public static boolean load=true;
     private static int item_counter;
     private Activity activity;
 
-    private MyCartAdapter(Activity activity) {
+    public MyCartAdapter(Activity activity) {
         this.activity = activity;
         CartItem temporary_item = new CartItem("Item Id", "Example 1", 30, 25, 5);
         AppState.getInstance().addCartItem(temporary_item);
@@ -36,13 +35,7 @@ public class MyCartAdapter extends BaseAdapter implements View.OnClickListener {
         AppState.getInstance().addCartItem(temporary_item);
         temporary_item = new CartItem("Item Id", "Example 6", 30000, 25000, 1);
         AppState.getInstance().addCartItem(temporary_item);
-
-    }
-
-    public static MyCartAdapter getInstance(Activity activity) {
-        if (adapter == null)
-            adapter = new MyCartAdapter(activity);
-        return adapter;
+        Log.i("Generic info "," Activity onCreate MyCartAdapter");
     }
 
     @Override

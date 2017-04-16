@@ -13,18 +13,30 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".home.MainActivity">
+     </activity>
+
         <activity
             android:name=".login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <activity android:name=".login.VerifyMobileNoActivity" />
-        <activity android:name=".home.MallSelectionActivity" android:label="Select Mall"></activity>
+
+        <activity
+            android:name=".home.MallSelectionActivity"
+            android:label="Select Mall"></activity>
+
+        <activity
+            android:name=".home.LocateCategories"
+            android:label="Locate Categories"></activity>
+
     </application>
 
 </manifest>
