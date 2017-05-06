@@ -23,18 +23,6 @@ public class MyCartAdapter extends BaseAdapter implements View.OnClickListener {
 
     public MyCartAdapter(Activity activity) {
         this.activity = activity;
-        CartItem temporary_item = new CartItem("Item Id", "Example 1", 30, 25, 5);
-        AppState.getInstance().addCartItem(temporary_item);
-        temporary_item = new CartItem("Item Id", "Example 2", 3, 2.33, 4);
-        AppState.getInstance().addCartItem(temporary_item);
-        temporary_item = new CartItem("Item Id", "Example 3", 300, 300, 4);
-        AppState.getInstance().addCartItem(temporary_item);
-        temporary_item = new CartItem("Item Id", "Example 4", 303, 300, 1);
-        AppState.getInstance().addCartItem(temporary_item);
-        temporary_item = new CartItem("Item Id", "Example 5", 1000, 900, 1);
-        AppState.getInstance().addCartItem(temporary_item);
-        temporary_item = new CartItem("Item Id", "Example 6", 30000, 25000, 1);
-        AppState.getInstance().addCartItem(temporary_item);
         Log.i("Generic info "," Activity onCreate MyCartAdapter");
     }
 
@@ -121,7 +109,7 @@ public class MyCartAdapter extends BaseAdapter implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 CartItem item = AppState.getInstance().getCartItemList().get(index);
-                if (item.getItem_quantity() > 0) {
+                if (item.getItem_quantity() > 1) {
                     item.decreaseItem_quantity();
                     notifyDataSetChanged();
                     int noOfItems = AppState.getInstance().getCartItemList().size();

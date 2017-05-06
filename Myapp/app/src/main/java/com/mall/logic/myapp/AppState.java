@@ -64,6 +64,12 @@ public static enum LOGIN_STATE {LOGIN_VIEW, REGISTRATION_VIEW};
         return offersList;
     }
 
+    public static boolean checkProccedStatus()
+    {
+        if(isMallSelected == false)
+            return false;
+        return true;
+    }
 
 
 }

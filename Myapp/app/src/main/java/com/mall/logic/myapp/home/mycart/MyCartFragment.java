@@ -22,7 +22,7 @@ import com.mall.logic.myapp.support_packages.SwipeDetector;
 public class MyCartFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private SwipeDetector swipeDetector;
-
+private  MyCartAdapter cartAdapter;
     public MyCartFragment() {
         // Required empty public constructor
     }
@@ -41,8 +41,8 @@ public class MyCartFragment extends Fragment implements AdapterView.OnItemClickL
        // listView.setOnTouchListener(swipeDetector);
        // listView.setOnItemClickListener(this);
         Log.i("Generic info "," Activity onCreate MyCartFragment ....");
-        listView.setAdapter(new MyCartAdapter(this.getActivity()));
-
+        cartAdapter = new MyCartAdapter(this.getActivity());
+        listView.setAdapter(cartAdapter);
         return view;
     }
 
@@ -55,5 +55,11 @@ public class MyCartFragment extends Fragment implements AdapterView.OnItemClickL
 
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        cartAdapter.notifyDataSetChanged();
     }
 }

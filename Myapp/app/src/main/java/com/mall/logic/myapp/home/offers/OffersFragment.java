@@ -38,11 +38,10 @@ public class OffersFragment extends Fragment implements IMall {
         Log.i("Generic info "," Activity onCreate OffersFragment ....");
         listView.setAdapter(new OffersAdapter(this.getActivity()));
 
+        locate = (Button) view.findViewById(R.id.locate_categories);
+
         if(AppState.isMallSelected == false)
-        {
-            locate = (Button) view.findViewById(R.id.locate_categories);
             locate.setVisibility(View.INVISIBLE);
-        }
 
         return view;
     }
