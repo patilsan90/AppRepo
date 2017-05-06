@@ -3,6 +3,7 @@ package com.mall.logic.myapp.home;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,8 +14,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.vision.barcode.Barcode;
 import com.mall.logic.myapp.AppState;
 import com.mall.logic.myapp.R;
+import com.mall.logic.myapp.barcode.BarcodeCaptureActivity;
 import com.mall.logic.myapp.home.mycart.MyCartFragment;
 import com.mall.logic.myapp.home.offers.OffersFragment;
 import com.mall.logic.myapp.login.LoginActivity;
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private int back_press_counter = 0;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    private static final int BARCODE_READER_REQUEST_CODE = 1;
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +98,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void scanProduct(View view) {
+
+        AppState.isProductScan = true;
+        Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
+        startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
+        /*
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.replace(R.id.home_fragment, scanProduct);
         fragmentTransaction.commit();
+        */
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == BARCODE_READER_REQUEST_CODE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                    Point[] p = barcode.cornerPoints;
+                    //mResultTextView.setText(barcode.displayValue);
+                    //} else
+                    //  mResultTextView.setText(R.string.no_barcode_captured);
+                } else Log.e(LOG_TAG, String.format(getString(R.string.barcode_error_format),
+                        CommonStatusCodes.getStatusCodeString(resultCode)));
+            } else super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
 
     public void showMyCart(View view) {
         FragmentManager fragmentManager = getFragmentManager();
@@ -126,8 +156,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void selectMall(View view) {
         Log.i("Home", "Select mall Clicked");
-        Intent myIntent = new Intent(this, MallSelectionActivity.class);
-        this.startActivity(myIntent);
+        AppState.isProductScan = false;
+        Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
+        startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
+
+//        Intent myIntent = new Intent(this, MallSelectionActivity.class);
+  //      this.startActivity(myIntent);
 
     }
 
@@ -136,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         back_press_counter++;
         if (back_press_counter == 2) {
             this.finish();
+            back_press_counter = 0;
             super.onBackPressed();
             return;
         }

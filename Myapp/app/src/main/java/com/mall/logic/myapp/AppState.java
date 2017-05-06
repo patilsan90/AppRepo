@@ -29,6 +29,7 @@ public static enum LOGIN_STATE {LOGIN_VIEW, REGISTRATION_VIEW};
     public static String sessionFile;
     public static String AppCacheFolder;
 
+    public static boolean isProductScan;
 
     private AppState()
     {
