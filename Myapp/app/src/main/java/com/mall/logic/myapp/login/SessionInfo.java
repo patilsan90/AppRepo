@@ -1,5 +1,7 @@
 package com.mall.logic.myapp.login;
 
+import android.net.Uri;
+
 import java.io.Serializable;
 
 /**
@@ -7,12 +9,16 @@ import java.io.Serializable;
  */
 
 public class SessionInfo implements Serializable{
-    enum LOGIN_OTIONS {FB, GMAIL, OTHER};
-    String userName;
-    String mobNo;
-    String emailID;
-    String password;
-    LOGIN_OTIONS logged_in_by;
-    String sessionID;
+    public enum LOGIN_OTIONS {FB, GMAIL, OTHER};
+    public String displayName; // For ex: Sandeep Patil
+    public String givenName; // For ex:: Sandeep
+    public String familyName; // For ex:: Patil
+    public String emailID;
 
+    public String mobNo;
+    public String password;
+    public LOGIN_OTIONS logged_in_by;
+    public String sessionID;
+    public Uri profilePhotoURL;
 }
+

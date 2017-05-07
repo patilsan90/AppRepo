@@ -1,14 +1,14 @@
 package com.mall.logic.myapp.login;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
 import com.mall.logic.myapp.AppState;
-import com.mall.logic.myapp.home.MainActivity;
 import com.mall.logic.myapp.R;
+import com.mall.logic.myapp.home.MainActivity;
 
 public class VerifyMobileNoActivity extends AppCompatActivity {
 
@@ -19,15 +19,26 @@ public class VerifyMobileNoActivity extends AppCompatActivity {
     }
 
 
-public void submitOTP(View view)
-{
-    Log.i("Login","Submitting OTP");
+    public void submitOTP(View view) {
+        Log.i("Login", "Submitting OTP");
 
-    Intent myIntent = new Intent(this, MainActivity.class);
-    myIntent.putExtra("isVerifySuccess", "YES"); //Optional parameters
-    this.startActivity(myIntent);
-    this.finish();
-    AppState.getInstance().loginActivity.finish();
-}
+        Intent myIntent = new Intent(this, MainActivity.class);
+        myIntent.putExtra("isVerifySuccess", "YES"); //Optional parameters
+        this.startActivity(myIntent);
+        finishActivities();
+
+        // TODO below code is temporary code line and needs to be look into it.
+        AppState.getInstance().loginActivity.writeSessionFile(AppState.getInstance().loginActivity.sessionInfo);
+
+    }
+
+    private void finishActivities() {
+        this.finish();
+        //TODO :: find any other way to finish below activity.
+        EnterMobileNoActivity.mobileNoActivity.finish();
+        AppState.getInstance().loginActivity.finish();
+
+    }
+
 
 }

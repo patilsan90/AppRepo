@@ -1,5 +1,6 @@
 package com.mall.logic.myapp;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.mall.logic.myapp.home.mycart.CartItem;
 import com.mall.logic.myapp.home.offers.OfferItem;
 import com.mall.logic.myapp.login.LoginActivity;

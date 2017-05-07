@@ -14,7 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.mall.logic.myapp.AppState;
 import com.mall.logic.myapp.R;
@@ -26,7 +32,9 @@ import com.mall.logic.myapp.login.LoginActivity;
 
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        GoogleApiClient.OnConnectionFailedListener{
+    private static final String TAG = "CognitionMall";
 
     private static final int BARCODE_READER_REQUEST_CODE = 1;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -37,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private int back_press_counter = 0;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +63,21 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         createDrawer();
+
+
+        // Configure sign-in to request the user's ID, email address, and basic
+// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleApiClient with access to the Google Sign-In API and the
+// options specified by gso.
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
     }
 
     private void createDrawer() {
@@ -202,11 +226,19 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Press again to close App", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
+        // be available.
+        Log.d(TAG, "onConnectionFailed:" + connectionResult);
+    }
+
     public void logout(View view) {
         Log.i("Home", "Logout clicked");
 
         File sessionFile = new File(AppState.sessionFile);
         if (sessionFile.exists()) {
+            signOutFromGmail();
             Log.i("Home", "Logout, file exists, deleting");
             sessionFile.delete();
             Intent myIntent = new Intent(this, LoginActivity.class);
@@ -216,4 +248,18 @@ public class MainActivity extends AppCompatActivity {
             Log.i("Home", "Logout, file does not exists, its a error case");
         }
     }
+
+    // [START signOut]
+    private void signOutFromGmail() {
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        // [START_EXCLUDE]
+                      //  updateUI(false);
+                        // [END_EXCLUDE]
+                    }
+                });
+    }
+// [END signOut]
 }

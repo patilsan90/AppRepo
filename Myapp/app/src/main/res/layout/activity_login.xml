@@ -41,15 +41,12 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <Button
+                <com.google.android.gms.common.SignInButton
                     android:id="@+id/signin_using_gmail"
-                    style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
-                    android:text="@string/signin_using_gmail"
-                    android:onClick="signinByGmail"
-                    android:textStyle="bold" />
+                    />
 
                 <Button
                     android:id="@+id/signin_using_fb"
@@ -58,7 +55,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:text="@string/signin_using_fb"
-                    android:onClick="signinByFB"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
