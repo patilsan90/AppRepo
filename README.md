@@ -1,17 +1,19 @@
 # SansRepo
 
-
-git pull git@github:patilsan90/AppRepo
 git init
-
 git remote add origin git@github.com:patilsan90/AppRepo
 git pull origin master
+
+git pull git@github:patilsan90/AppRepo
 
 git commit -s
 gii push origin master
 
 ------------------------------------------------------------------------
 Google GMAIL Authentication reading links::
+
+client_id :: gmail::  584874469176-r3661l2pvjhlv5l0488nk6vb9v52d2hp.apps.googleusercontent.com 
+
 
 https://github.com/googlesamples/google-services/blob/master/android/signin/app/src/main/res/values/strings.xml
 

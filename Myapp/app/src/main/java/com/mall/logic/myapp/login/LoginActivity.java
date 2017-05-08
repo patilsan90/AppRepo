@@ -11,10 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -43,15 +40,15 @@ public class LoginActivity extends AppCompatActivity implements
     private static final String TAG = "CognitionMall";
     public GoogleApiClient mGoogleApiClient;
     public SessionInfo sessionInfo;
+    public ProgressDialog mProgressDialog;
     boolean isRegistrationForm = false;
     LoginFragment loginFragment;
     RegisterUserFragment registerUserFragment;
     EditText email;
     EditText mobNo;
-    private ProgressDialog mProgressDialog;
+    CallbackManager callbackManager;
     private GmailSignIn gmailSignIn;
     private LoginButton fbloginButton;
-    CallbackManager callbackManager;
     private FBSignIn fbSignIn;
 
     @Override
@@ -77,60 +74,16 @@ public class LoginActivity extends AppCompatActivity implements
 
 
         findViewById(R.id.signin_using_gmail).setOnClickListener(this);
-        findViewById(R.id.signin_using_fb).setOnClickListener(this);
+        //findViewById(R.id.signin_using_fb).setOnClickListener(this);
+
+        fbloginButton = (LoginButton) findViewById(R.id.signin_using_fb);
+        fbloginButton.setReadPermissions("email");
 
         gmailSignIn = new GmailSignIn(this);
         fbSignIn = new FBSignIn(this);
+
         gmailSignIn.configure();
-
-
-        fbloginButton = (LoginButton) findViewById(R.id.signin_using_fb);
-       fbloginButton.setReadPermissions("email");
-
-
-        // Callback registration
-        fbloginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                // App code
-                Log.i(TAG, "FB login success");
-            }
-
-            @Override
-            public void onCancel() {
-                // App code
-                Log.i(TAG, "FB login cancel");
-
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-                Log.i(TAG, "FB login error");
-
-            }
-        });
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        // App code
-                        Log.i(TAG, "FB login success :: LoginManager");
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                        Log.i(TAG, "FB login cancel :: LoginManager");
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                        Log.i(TAG, "FB login error :: LoginManager");
-                    }
-                });
+        fbSignIn.configure();
 
     }
 
@@ -185,16 +138,16 @@ public class LoginActivity extends AppCompatActivity implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.i(TAG, "onActivityResult :: "+requestCode);
+        Log.i(TAG, "onActivityResult :: " + requestCode);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == gmailSignIn.RC_SIGN_IN) {
             Log.i(TAG, "onActivityResult :: Gmail Signin");
 
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            int statusCode = result.getStatus().getStatusCode();
+            // Toast.makeText(AppState.getInstance().loginActivity, "Status code:: " + statusCode, Toast.LENGTH_SHORT).show();
             gmailSignIn.handleSignInResult(result);
-        }
-        else if(requestCode == fbSignIn.RC_SIGN_IN)
-        {
+        } else if (requestCode == fbSignIn.RC_SIGN_IN) {
             Log.i(TAG, "onActivityResult :: FB Signin");
 
             callbackManager.onActivityResult(requestCode, resultCode, data);
@@ -229,7 +182,7 @@ public class LoginActivity extends AppCompatActivity implements
         Log.i(TAG, "Login with fb");
 //        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
 
-        LoginManager.getInstance().logInWithReadPermissions(this,Arrays.asList("email"));
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email"));
 
         /*
         String email_id = "temp@temp.com";

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -33,7 +34,7 @@ import com.mall.logic.myapp.login.LoginActivity;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "CognitionMall";
 
     private static final int BARCODE_READER_REQUEST_CODE = 1;
@@ -122,8 +123,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void scanProduct(View view) {
 
-        if(AppState.checkProccedStatus()==false)
-        {
+        if (AppState.checkProccedStatus() == false) {
             Toast.makeText(this, "Please select mall first !!!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -173,8 +173,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void showMyCart(View view) {
 
-        if(AppState.checkProccedStatus()==false)
-        {
+        if (AppState.checkProccedStatus() == false) {
             Toast.makeText(this, "Please select mall first !!!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -239,6 +238,7 @@ public class MainActivity extends AppCompatActivity implements
         File sessionFile = new File(AppState.sessionFile);
         if (sessionFile.exists()) {
             signOutFromGmail();
+            LoginManager.getInstance().logOut();
             Log.i("Home", "Logout, file exists, deleting");
             sessionFile.delete();
             Intent myIntent = new Intent(this, LoginActivity.class);
@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements
                     @Override
                     public void onResult(Status status) {
                         // [START_EXCLUDE]
-                      //  updateUI(false);
+                        //  updateUI(false);
                         // [END_EXCLUDE]
                     }
                 });

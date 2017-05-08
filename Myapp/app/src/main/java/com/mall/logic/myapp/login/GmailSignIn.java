@@ -65,6 +65,7 @@ public class GmailSignIn {
             GoogleSignInAccount acct = result.getSignInAccount();
             // mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
             //updateUI(true);
+
             verifyGmailSignin(acct);
         } else {
             Log.i(TAG, "Gmail sign out, unauthentic");
@@ -87,7 +88,7 @@ public class GmailSignIn {
         SessionInfo sessionInfo = new SessionInfo();
         sessionInfo.displayName = displayName;
         sessionInfo.familyName = familyName;
-        sessionInfo.givenName = givenName;
+        sessionInfo.firstName = givenName;
         sessionInfo.emailID = email;
         sessionInfo.profilePhotoURL = photoURL;
         sessionInfo.logged_in_by = SessionInfo.LOGIN_OTIONS.GMAIL;

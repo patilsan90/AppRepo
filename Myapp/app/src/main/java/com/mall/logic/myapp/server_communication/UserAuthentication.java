@@ -13,30 +13,27 @@ public class UserAuthentication {
 
     static UserAuthentication authentication;
 
-    private UserAuthentication()
-    {
+    private UserAuthentication() {
 
     }
 
-    public static UserAuthentication getInstance()
-    {
-        if(authentication == null)
+    public static UserAuthentication getInstance() {
+        if (authentication == null)
             authentication = new UserAuthentication();
         return authentication;
     }
-    public String verifyMobileNumber(SessionInfo info)
-    {
+
+    public String verifyMobileNumber(SessionInfo info) {
         String mobNumber = verifyMobileNumberFromServer(info);
-       return mobNumber;
+        return mobNumber;
 
     }
 
-    public boolean authenticateUser(File sessionFile)
-    {
+    public boolean authenticateUser(File sessionFile) {
         //todo ::
         // this function contains temporary logic
         // which need to be replaced once server setup is done.
-        if(sessionFile.exists())
+        if (sessionFile.exists())
             return true;
 
         return false;
