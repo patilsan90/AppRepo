@@ -48,14 +48,13 @@
                     android:layout_weight=".5"
                     />
 
-                <Button
+              <com.facebook.login.widget.LoginButton
                     android:id="@+id/signin_using_fb"
-                    style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
-                    android:text="@string/signin_using_fb"
-                    android:textStyle="bold" />
+                    />
+
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
