@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.mall.logic.myapp.login.LoginFragment">
+    tools:context="com.algo.transact.login.LoginFragment">
 
     <AutoCompleteTextView
         android:id="@+id/email"
